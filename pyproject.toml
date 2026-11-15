@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anuncios"
+version = "0.1.0"
+description = "Coletor CLI de anuncios/listagens por termo e dominio, via curl_cffi + proxy SOCKS5/UDP"
+requires-python = ">=3.11"
+dependencies = [
+  "curl_cffi==0.16.3",
+  "openpyxl>=3.1",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+anuncios = "anuncios.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["anuncios*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

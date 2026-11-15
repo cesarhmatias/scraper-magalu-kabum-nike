@@ -1,0 +1,9 @@
+# credenciais e artefatos locais
+.env
+.venv/
+out/
+__pycache__/
+*.pyc
+.pytest_cache/
+fixtures/live/
+*.egg-info/
