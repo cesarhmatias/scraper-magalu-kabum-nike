@@ -1,0 +1,113 @@
+{
+ "size": 1473,
+ "sizeSearch": 1473,
+ "maxSize": 10000,
+ "sizeLabel": "1.473 produtos encontrados",
+ "partnerKey": "elastic",
+ "apiKey": "casasbahia",
+ "queries": {
+  "original": "iphone",
+  "normalized": "iphone",
+  "processed": "iphone",
+  "queryType": "found"
+ },
+ "relativePath": "/iphone/b",
+ "products": [
+  {
+   "cId": "38",
+   "id": "93574465",
+   "name": "Iphone 17 Pro Max 256Gb Laranja-Cósmico",
+   "categories": [
+    {
+     "id": "38",
+     "name": "Telefones e Celulares",
+     "parents": [
+      326,
+      3267
+     ],
+     "subCategory": [
+      {
+       "id": "326",
+       "name": "Smartphones"
+      },
+      {
+       "id": "3267",
+       "name": "iPhone"
+      }
+     ]
+    }
+   ],
+   "image": "https://imgs.casasbahia.com.br/1582380324/1xg.jpg",
+   "imagensGallery": [
+    "https://imgs.casasbahia.com.br/1582380324/1xg.jpg",
+    "https://imgs.casasbahia.com.br/1582380324/2xg.jpg",
+    "https://imgs.casasbahia.com.br/1582380324/3xg.jpg",
+    "https://imgs.casasbahia.com.br/1582380324/4xg.jpg"
+   ],
+   "url": "https://www.casasbahia.com.br/iphone-17-pro-max-256gb-laranja-cosmico/p/1582380324",
+   "rating": 0.0,
+   "ratingComments": 0,
+   "sku": 1582380324,
+   "sellerType": null,
+   "brand": {
+    "idBrand": "19",
+    "brand": "Apple"
+   },
+   "status": "AVAILABLE",
+   "pinado": false,
+   "addToCart": "hidden",
+   "hasSponsorProducts": false,
+   "advertasingEvents": null,
+   "idsRegioes": [],
+   "productType": "Nacional"
+  },
+  {
+   "cId": "38",
+   "id": "93574538",
+   "name": "iPhone 17 256GB Sálvia",
+   "categories": [
+    {
+     "id": "38",
+     "name": "Telefones e Celulares",
+     "parents": [
+      326,
+      3267
+     ],
+     "subCategory": [
+      {
+       "id": "326",
+       "name": "Smartphones"
+      },
+      {
+       "id": "3267",
+       "name": "iPhone"
+      }
+     ]
+    }
+   ],
+   "image": "https://imgs.casasbahia.com.br/1582380406/1xg.jpg",
+   "imagensGallery": [
+    "https://imgs.casasbahia.com.br/1582380406/1xg.jpg",
+    "https://imgs.casasbahia.com.br/1582380406/2xg.jpg",
+    "https://imgs.casasbahia.com.br/1582380406/3xg.jpg",
+    "https://imgs.casasbahia.com.br/1582380406/4xg.jpg"
+   ],
+   "url": "https://www.casasbahia.com.br/iphone-17-256gb-salvia/p/1582380406",
+   "rating": 5.0,
+   "ratingComments": 4,
+   "sku": 1582380406,
+   "sellerType": null,
+   "brand": {
+    "idBrand": "19",
+    "brand": "Apple"
+   },
+   "status": "AVAILABLE",
+   "pinado": false,
+   "addToCart": "hidden",
+   "hasSponsorProducts": false,
+   "advertasingEvents": null,
+   "idsRegioes": [],
+   "productType": "Nacional"
+  }
+ ]
+}

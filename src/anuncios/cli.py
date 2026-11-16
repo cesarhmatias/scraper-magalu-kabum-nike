@@ -156,6 +156,31 @@ def cmd_doctor(args) -> int:
     except ErroColeta as exc:
         print(f"nike     falhou: {exc}")
 
+    # Casas Bahia: API de busca v3 + API de precos (o HTML /<termo>/b e barrado pelo Akamai)
+    try:
+        from .config import headers_api_json
+        from .providers.casasbahia import SITE as CB_SITE, CasasBahia, url_busca
+        cb = CasasBahia(cfg)
+        try:
+            resp = cb.http.get(
+                url_busca("iphone", 1),
+                headers_api_json(origem=CB_SITE, referer=f"{CB_SITE}/iphone/b"),
+                esperado="json", rotulo="doctor-casasbahia",
+            )
+            dados = resp.json()
+            produtos = dados.get("products") or []
+            print(
+                f"casasbahia ok status={resp.status} protocolo={resp.http_version} "
+                f"produtos={len(produtos)} total={dados.get('size')}"
+            )
+            if produtos:
+                ofertas, falhas = cb._buscar_precos([int(produtos[0]["id"])])
+                print(f"           preco={'ok' if ofertas else 'vazio'} ofertas={len(ofertas)} falhas={falhas}")
+        finally:
+            cb.fechar()
+    except ErroColeta as exc:
+        print(f"casasbahia falhou: {exc}")
+
     return 0
 
 
@@ -172,9 +197,9 @@ def _build_parser() -> argparse.ArgumentParser:
     b = sub.add_parser("buscar", help="busca o termo e gera a planilha")
     b.add_argument("--termo", required=True, help="termo de busca")
     b.add_argument("--dominio", action="append", default=None,
-                   help="domínio/alias (magalu, kabum, nike); repita para vários")
+                   help="domínio/alias (magalu, kabum, nike, casasbahia); repita para vários")
     b.add_argument("--paginas", type=int, default=0,
-                   help="páginas por domínio; 0 = todas (limite de 10 páginas / 500 itens)")
+                   help="páginas por domínio; 0 = todas (limite de 50; itens/página varia por domínio)")
     b.add_argument("--saida", default=None, help="caminho do .xlsx")
     b.add_argument("--timeout", type=float, default=None)
     b.add_argument("--tentativas", type=int, default=None)

@@ -187,3 +187,31 @@ def headers_api_json(*, origem: str, referer: str) -> list[tuple[str, str]]:
         ("accept-language", ACCEPT_LANGUAGE),
         ("priority", "u=1, i"),
     ]
+
+
+def headers_preco_json(*, origem: str, referer: str, apikey: str) -> list[tuple[str, str]]:
+    """POST JSON da API de precos da Casas Bahia, ordem exata da captura.
+
+    Os headers `xaplication` e `apikey` sao exigidos pelo gateway Kong; a ordem
+    abaixo e a que o Chrome 157 enviou em `api.casasbahia.com.br`.
+    """
+    return [
+        ("pragma", "no-cache"),
+        ("cache-control", "no-cache"),
+        ("sec-ch-ua-platform", '"macOS"'),
+        ("xaplication", "vv-categoria-frontend"),
+        ("user-agent", USER_AGENT),
+        ("sec-ch-ua", SEC_CH_UA),
+        ("content-type", "application/json"),
+        ("apikey", apikey),
+        ("sec-ch-ua-mobile", "?0"),
+        ("accept", ACCEPT_ALL),
+        ("origin", origem),
+        ("sec-fetch-site", "same-site"),
+        ("sec-fetch-mode", "cors"),
+        ("sec-fetch-dest", "empty"),
+        ("referer", referer),
+        ("accept-encoding", ACCEPT_ENCODING),
+        ("accept-language", ACCEPT_LANGUAGE),
+        ("priority", "u=1, i"),
+    ]

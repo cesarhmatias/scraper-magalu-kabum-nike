@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from anuncios.config import Config
+from anuncios.providers.casasbahia import CasasBahia, url_busca
 from anuncios.providers.kabum import Kabum
 from anuncios.providers.magalu import Magalu
 from anuncios.providers.nike import Nike
@@ -54,3 +55,61 @@ def test_nike_mapeia_produto():
     assert a.url.startswith("https://www.nike.com.br/")
     assert a.imagem.endswith(f"{produto['id']}.jpg")
     assert a.vendedor == "Nike"
+
+
+def _cb_fixtures():
+    busca = json.loads((FIXTURES / "casasbahia_busca.json").read_text())
+    preco = json.loads((FIXTURES / "casasbahia_preco.json").read_text())
+    produtos = busca["products"]
+    ofertas = preco["Ofertas"]
+    return busca, preco, produtos, ofertas
+
+
+def test_casasbahia_url_busca():
+    url = url_busca("tênis de corrida", 2)
+    assert url.startswith("https://api-partner-prd.casasbahia.com.br/api/v3/web/busca?")
+    assert "resultsperpage=20" in url
+    assert "apikey=casasbahia" in url
+    assert "partnerkey=elastic" in url
+    assert "page=2" in url
+    assert "terms=t%C3%AAnis+de+corrida" in url
+
+
+def test_casasbahia_mapeia_produto_com_preco():
+    _, _, produtos, ofertas = _cb_fixtures()
+    produto = produtos[0]
+    oferta = next(o for o in ofertas if o["PrecoVenda"]["IdProduto"] == int(produto["id"]))
+    p = CasasBahia(_cfg())
+    try:
+        a = p._mapear(produto, oferta, "iphone", 1, 1, "fonte")
+    finally:
+        p.fechar()
+    pv = oferta["PrecoVenda"]
+    assert a.id == produto["id"]
+    assert a.titulo == produto["name"]
+    assert a.marca == produto["brand"]["brand"]
+    assert a.categoria == produto["categories"][0]["name"]
+    assert a.preco == float(pv["Preco"])
+    assert a.preco_original == float(pv["PrecoDe"])
+    assert a.desconto_pct and a.desconto_pct > 0
+    assert a.parcelamento and "x de" in a.parcelamento
+    assert a.vendedor == "Casas Bahia"
+    assert a.disponivel is True
+    assert a.url.startswith("https://www.casasbahia.com.br/")
+    assert a.imagem == produto["image"]
+
+
+def test_casasbahia_mapeia_produto_sem_oferta():
+    _, _, produtos, _ = _cb_fixtures()
+    produto = produtos[0]
+    p = CasasBahia(_cfg())
+    try:
+        a = p._mapear(produto, None, "iphone", 1, 1, "fonte")
+    finally:
+        p.fechar()
+    assert a.id == produto["id"]
+    assert a.preco is None
+    assert a.preco_pix is None
+    assert a.parcelamento is None
+    # sem preco, a disponibilidade cai no status da busca
+    assert a.disponivel is (produto["status"] == "AVAILABLE")

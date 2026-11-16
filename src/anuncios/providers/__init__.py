@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 from .base import Provider
+from .casasbahia import CasasBahia
 from .kabum import Kabum
 from .magalu import Magalu
 from .nike import Nike
 
-TODOS: tuple[type[Provider], ...] = (Magalu, Kabum, Nike)
+TODOS: tuple[type[Provider], ...] = (Magalu, Kabum, Nike, CasasBahia)
 
 _ALIASES: dict[str, type[Provider]] = {}
 for _p in TODOS:
@@ -27,4 +28,4 @@ def resolver(dominio: str) -> type[Provider]:
     raise KeyError(f"dominio nao suportado: {dominio!r}. Disponiveis: {disponiveis}")
 
 
-__all__ = ["Provider", "Magalu", "Kabum", "Nike", "TODOS", "resolver"]
+__all__ = ["Provider", "Magalu", "Kabum", "Nike", "CasasBahia", "TODOS", "resolver"]

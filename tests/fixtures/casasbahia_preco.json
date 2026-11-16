@@ -1,0 +1,165 @@
+{
+ "Ofertas": [
+  {
+   "PrecoVenda": {
+    "IdSku": 1582380324,
+    "IdProduto": 93574465,
+    "IdLojista": 234432,
+    "PrecoDe": 13999.0,
+    "Preco": 9599.0,
+    "PrecoSemDesconto": 9599.0,
+    "PrecoTabela": 9599.0,
+    "Parcelamento": "6x de R$1.599,83",
+    "PontosMultiplos": 4799,
+    "DescontoAplicado": false,
+    "NumeroParcelas": 6,
+    "NumeroParcelasSugeridasOutros": 0,
+    "NumeroParcelasSugeridasBandeira": 0,
+    "ValorParcela": 1599.83,
+    "IdSkuPadrao": 1582380324,
+    "DisponibilidadeVenda": true,
+    "DisponibilidadeEstoque": true,
+    "PossuiDescontoFidelizacao": false,
+    "PercentualDesconto": -31,
+    "Canal": null,
+    "DisponibilidadeOferta": true,
+    "OrigemEstoqueRegional": false
+   },
+   "DescontoFormaPagamento": {
+    "IdDesconto": 0,
+    "IdDescontoMarketplace": null,
+    "IdFormaPagamento": null,
+    "PercentualDesconto": 0.0,
+    "DescontoAplicado": 0.0,
+    "PrecoVendaComDesconto": 0.0,
+    "PossuiDesconto": false,
+    "DescricaoDesconto": null,
+    "FormaPagamento": null,
+    "TemFormaPagamentoBoleto": false
+   },
+   "DescontosTodasFormasPagamento": null,
+   "OpcoesParcelamento": null,
+   "Lojistas": null,
+   "Colecoes": null,
+   "MelhoresParcelamentos": [
+    {
+     "Tipo": "Outros",
+     "Preco": 9599.0,
+     "ValorParcela": 1599.83,
+     "QtdParcela": 6,
+     "JurosMes": 0.0,
+     "Descricao": "sem juros"
+    },
+    {
+     "Tipo": "CDC",
+     "Preco": 9599.0,
+     "ValorParcela": 799.91,
+     "QtdParcela": 12,
+     "JurosMes": 0.0,
+     "Descricao": "sem juros"
+    },
+    {
+     "Tipo": "Bandeira",
+     "Preco": 9599.0,
+     "ValorParcela": 799.91,
+     "QtdParcela": 12,
+     "JurosMes": 0.0,
+     "Descricao": "sem juros"
+    }
+   ],
+   "Disponibilidade": {
+    "Regional": false,
+    "Nacional": true,
+    "Comercial": true,
+    "Retira": false,
+    "DisponibilidadeOferta": true,
+    "DisponibilidadeEstoque": true,
+    "IdSku": 1582380324,
+    "IdLojista": 234432
+   },
+   "Regioes": null
+  },
+  {
+   "PrecoVenda": {
+    "IdSku": 1582380406,
+    "IdProduto": 93574538,
+    "IdLojista": 24338,
+    "PrecoDe": 5899.0,
+    "Preco": 5899.0,
+    "PrecoSemDesconto": 5899.0,
+    "PrecoTabela": 5899.0,
+    "Parcelamento": "6x de R$983,17",
+    "PontosMultiplos": 2949,
+    "DescontoAplicado": false,
+    "NumeroParcelas": 6,
+    "NumeroParcelasSugeridasOutros": 0,
+    "NumeroParcelasSugeridasBandeira": 0,
+    "ValorParcela": 983.17,
+    "IdSkuPadrao": 1582380406,
+    "DisponibilidadeVenda": true,
+    "DisponibilidadeEstoque": true,
+    "PossuiDescontoFidelizacao": false,
+    "PercentualDesconto": 0,
+    "Canal": null,
+    "DisponibilidadeOferta": true,
+    "OrigemEstoqueRegional": false
+   },
+   "DescontoFormaPagamento": {
+    "IdDesconto": 0,
+    "IdDescontoMarketplace": null,
+    "IdFormaPagamento": null,
+    "PercentualDesconto": 0.0,
+    "DescontoAplicado": 0.0,
+    "PrecoVendaComDesconto": 0.0,
+    "PossuiDesconto": false,
+    "DescricaoDesconto": null,
+    "FormaPagamento": null,
+    "TemFormaPagamentoBoleto": false
+   },
+   "DescontosTodasFormasPagamento": null,
+   "OpcoesParcelamento": null,
+   "Lojistas": null,
+   "Colecoes": null,
+   "MelhoresParcelamentos": [
+    {
+     "Tipo": "Outros",
+     "Preco": 5899.0,
+     "ValorParcela": 983.17,
+     "QtdParcela": 6,
+     "JurosMes": 0.0,
+     "Descricao": "sem juros"
+    },
+    {
+     "Tipo": "CDC",
+     "Preco": 5899.0,
+     "ValorParcela": 491.58,
+     "QtdParcela": 12,
+     "JurosMes": 0.0,
+     "Descricao": "sem juros"
+    },
+    {
+     "Tipo": "Bandeira",
+     "Preco": 5899.0,
+     "ValorParcela": 491.58,
+     "QtdParcela": 12,
+     "JurosMes": 0.0,
+     "Descricao": "sem juros"
+    }
+   ],
+   "Disponibilidade": {
+    "Regional": false,
+    "Nacional": true,
+    "Comercial": true,
+    "Retira": false,
+    "DisponibilidadeOferta": true,
+    "DisponibilidadeEstoque": true,
+    "IdSku": 1582380406,
+    "IdLojista": 24338
+   },
+   "Regioes": null
+  }
+ ],
+ "Valido": true,
+ "Mensagens": [],
+ "Protocolo": "f39870f9-db50-43ad-bb9e-5f9f31646af9"
+}

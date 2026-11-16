@@ -139,18 +139,54 @@ class Http:
         rotulo: str = "",
     ) -> Resposta:
         """GET com retry. `esperado` = html|json|qualquer."""
+        return self._requisitar(
+            "GET", url, headers, None,
+            esperado=esperado, permitir_403=permitir_403, rotulo=rotulo,
+        )
+
+    def post(
+        self,
+        url: str,
+        headers: Iterable[tuple[str, str]],
+        payload: dict,
+        *,
+        esperado: str = "json",
+        permitir_403: bool = False,
+        rotulo: str = "",
+    ) -> Resposta:
+        """POST JSON com retry (ex.: API de precos por lote)."""
+        return self._requisitar(
+            "POST", url, headers, payload,
+            esperado=esperado, permitir_403=permitir_403, rotulo=rotulo,
+        )
+
+    def _requisitar(
+        self,
+        metodo: str,
+        url: str,
+        headers: Iterable[tuple[str, str]],
+        payload: dict | None,
+        *,
+        esperado: str,
+        permitir_403: bool,
+        rotulo: str,
+    ) -> Resposta:
         tentativas = max(1, self.cfg.tentativas)
         ultimo_erro: Exception | None = None
+        enviar = self._sessao.get if metodo == "GET" else self._sessao.post
         for tentativa in range(1, tentativas + 1):
             inicio = time.perf_counter()
             try:
-                r = self._sessao.get(url, headers=cffi.Headers(list(headers)))
+                if payload is None:
+                    r = enviar(url, headers=cffi.Headers(list(headers)))
+                else:
+                    r = enviar(url, headers=cffi.Headers(list(headers)), json=payload)
             except Exception as exc:  # rede, TLS, QUIC
                 ultimo_erro = exc
                 protocolo = "erro"
                 evento(
                     "aviso", acao="request_erro", dominio=self.dominio, url=url,
-                    tentativa=tentativa, transporte=self._versao,
+                    metodo=metodo, tentativa=tentativa, transporte=self._versao,
                     erro=f"{type(exc).__name__}: {exc}"[:300], proxy=self.cfg.proxy_id,
                 )
                 if self._pode_cair_para_h2(exc):
@@ -185,7 +221,7 @@ class Http:
             )
             evento(
                 "info", acao="request", dominio=self.dominio, rotulo=rotulo or None,
-                status=resp.status, protocolo=protocolo, bytes=len(corpo),
+                metodo=metodo, status=resp.status, protocolo=protocolo, bytes=len(corpo),
                 duracao_ms=duracao, tentativa=tentativa, url=url, sessao=self._versao,
                 proxy=self.cfg.proxy_id,
             )
